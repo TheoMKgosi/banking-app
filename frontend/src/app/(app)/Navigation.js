@@ -1,11 +1,9 @@
 import ApplicationLogo from '@/components/ApplicationLogo'
-import Dropdown from '@/components/Dropdown'
 import Link from 'next/link'
 import NavLink from '@/components/NavLink'
 import ResponsiveNavLink, {
     ResponsiveNavButton,
 } from '@/components/ResponsiveNavLink'
-import { DropdownButton } from '@/components/DropdownLink'
 import { useAuth } from '@/hooks/auth'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
@@ -16,57 +14,43 @@ const Navigation = ({ user }) => {
     const [open, setOpen] = useState(false)
 
     return (
-        <nav className="bg-white border-b border-gray-100">
+        <nav className="bg-white border-b border-gray-100 sm:h-screen sm:w-[200px] sm:fixed sm:shadow">
             {/* Primary Navigation Menu */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between h-16">
-                    <div className="flex">
+            <div className="max-w-7xl mx-auto px-4 ">
+                <div className="flex justify-between h-16 sm:flex-col sm:justify-between sm:h-screen">
+                    <div className="flex sm:flex-col sm:space-y-9 sm:mt-3">
                         {/* Logo */}
-                        <div className="flex-shrink-0 flex items-center">
+                        <div className="flex-shrink-0 flex items-center sm:justify-center">
                             <Link href="/dashboard">
                                 <ApplicationLogo className="block h-10 w-auto fill-current text-gray-600" />
                             </Link>
                         </div>
 
                         {/* Navigation Links */}
-                        <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <div className="hidden space-x-8 sm:space-x-0 sm:space-y-2 sm:ml-10 sm:flex sm:flex-col sm:m-auto">
                             <NavLink
                                 href="/dashboard"
                                 active={usePathname() === '/dashboard'}>
                                 Dashboard
                             </NavLink>
+                            <NavLink
+                                href="/dashboard/loan"
+                                active={usePathname() === '/dashboard/loan'}>
+                                Loan
+                            </NavLink>
+                            <NavLink
+                                href="/dashboard/savings"
+                                active={usePathname() === '/dashboard/savings'}>
+                                Savings
+                            </NavLink>
                         </div>
                     </div>
 
-                    {/* Settings Dropdown */}
-                    <div className="hidden sm:flex sm:items-center sm:ml-6">
-                        <Dropdown
-                            align="right"
-                            width="48"
-                            trigger={
-                                <button className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none transition duration-150 ease-in-out">
-                                    <div>{user?.name}</div>
-
-                                    <div className="ml-1">
-                                        <svg
-                                            className="fill-current h-4 w-4"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20">
-                                            <path
-                                                fillRule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clipRule="evenodd"
-                                            />
-                                        </svg>
-                                    </div>
-                                </button>
-                            }>
                             {/* Authentication */}
-                            <DropdownButton onClick={logout}>
+                            <ResponsiveNavButton onClick={logout} className={'hidden sm:block sm:mb-3 sm:border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:text-gray-700 focus:border-gray-300'}>
+
                                 Logout
-                            </DropdownButton>
-                        </Dropdown>
-                    </div>
+                            </ResponsiveNavButton>
 
                     {/* Hamburger */}
                     <div className="-mr-2 flex items-center sm:hidden">
@@ -109,6 +93,16 @@ const Navigation = ({ user }) => {
                             href="/dashboard"
                             active={usePathname() === '/dashboard'}>
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href="/dashboard/loan"
+                            active={usePathname() === '/dashboard/loan'}>
+                            Loan
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href="/dashboard/savings"
+                            active={usePathname() === '/dashboard/savings'}>
+                            Savings
                         </ResponsiveNavLink>
                     </div>
 
