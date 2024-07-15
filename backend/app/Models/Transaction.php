@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property int $saving_id
@@ -33,4 +33,19 @@ class Transaction extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'saving_id',
+        'amount',
+        'description',
+        'type'
+    ];
+
+    public function savings() {
+        return $this->belongsTo(Saving::class);
+    }
 }

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use function PHPUnit\Framework\returnValue;
+
 /**
  *
  *
@@ -41,4 +43,8 @@ class Saving extends Model
         'user_id',
         'account_number'
     ];
+
+    public function transaction(){
+        return $this->hasMany(Transaction::class);
+    }
 }

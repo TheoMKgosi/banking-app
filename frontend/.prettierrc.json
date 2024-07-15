@@ -1,8 +1,9 @@
 {
-    "arrowParens": "avoid",
+    "arrowParens": "always",
     "jsxBracketSameLine": true,
-    "semi": false,
+    "semi": true,
     "singleQuote": true,
     "tabWidth": 4,
-    "trailingComma": "all"
+    "trailingComma": "all",
+    "plugins": ["prettier-plugin-tailwindcss"]
 }

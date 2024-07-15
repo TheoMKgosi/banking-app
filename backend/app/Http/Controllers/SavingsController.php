@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Saving;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class SavingsController extends Controller
 {
@@ -34,9 +36,17 @@ class SavingsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Saving $saving)
+    public function show($id)
     {
-        //
+
+        Log::info($id);
+        $res = Saving::where('id', $id)->where('user_id', Auth::id())->first();
+
+        if ($res) {
+            return response()->json($res);
+        } else {
+            return response()->json(['message' => 'Savings account not found or unauthorized access'], 404);
+        }
     }
 
     /**
@@ -52,7 +62,9 @@ class SavingsController extends Controller
      */
     public function destroy(Saving $saving)
     {
-        //
+        Transaction::where('saving_id',$saving->id)->delete();
+        $saving->delete();
+        return response()->json('Account deleted',201);
     }
 
     /**

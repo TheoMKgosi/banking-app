@@ -27,7 +27,7 @@ const Navigation = ({ user }) => {
                         </div>
 
                         {/* Navigation Links */}
-                        <div className="hidden space-x-8 sm:space-x-0 sm:space-y-2 sm:ml-10 sm:flex sm:flex-col sm:m-auto">
+                        <div className="hidden space-x-8 sm:space-x-0 sm:space-y-4 sm:ml-10 sm:flex sm:flex-col sm:m-auto">
                             <NavLink
                                 href="/dashboard"
                                 active={usePathname() === '/dashboard'}>
@@ -42,6 +42,11 @@ const Navigation = ({ user }) => {
                                 href="/dashboard/savings"
                                 active={usePathname() === '/dashboard/savings'}>
                                 Savings
+                            </NavLink>
+                            <NavLink
+                                href="/dashboard/settings"
+                                active={usePathname() === '/dashboard/settings'}>
+                                Settings
                             </NavLink>
                         </div>
                     </div>
@@ -88,7 +93,7 @@ const Navigation = ({ user }) => {
             {/* Responsive Navigation Menu */}
             {open && (
                 <div className="block sm:hidden">
-                    <div className="pt-2 pb-3 space-y-1">
+                    <div className="pt-2 pb-3 space-y-3">
                         <ResponsiveNavLink
                             href="/dashboard"
                             active={usePathname() === '/dashboard'}>
@@ -103,6 +108,11 @@ const Navigation = ({ user }) => {
                             href="/dashboard/savings"
                             active={usePathname() === '/dashboard/savings'}>
                             Savings
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href="/dashboard/settings"
+                            active={usePathname() === '/dashboard/settings'}>
+                            Settings
                         </ResponsiveNavLink>
                     </div>
 
