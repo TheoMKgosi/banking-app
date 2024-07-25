@@ -1,27 +1,27 @@
-'use client'
+'use client';
 
-import Button from '@/components/Button'
-import Input from '@/components/Input'
-import InputError from '@/components/InputError'
-import Label from '@/components/Label'
-import { useAuth } from '@/hooks/auth'
-import { useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
-import AuthSessionStatus from '@/app/(auth)/AuthSessionStatus'
+import Button from '@/components/Button';
+import Input from '@/components/Input';
+import InputError from '@/components/InputError';
+import Label from '@/components/Label';
+import { useAuth } from '@/hooks/auth';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import AuthSessionStatus from '@/app/(auth)/AuthSessionStatus';
 
 const PasswordReset = () => {
-    const searchParams = useSearchParams()
+    const searchParams = useSearchParams();
 
-    const { resetPassword } = useAuth({ middleware: 'guest' })
+    const { resetPassword } = useAuth({ middleware: 'guest' });
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [passwordConfirmation, setPasswordConfirmation] = useState('')
-    const [errors, setErrors] = useState([])
-    const [status, setStatus] = useState(null)
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordConfirmation, setPasswordConfirmation] = useState('');
+    const [errors, setErrors] = useState([]);
+    const [status, setStatus] = useState(null);
 
-    const submitForm = event => {
-        event.preventDefault()
+    const submitForm = (event) => {
+        event.preventDefault();
 
         resetPassword({
             email,
@@ -29,12 +29,12 @@ const PasswordReset = () => {
             password_confirmation: passwordConfirmation,
             setErrors,
             setStatus,
-        })
-    }
+        });
+    };
 
     useEffect(() => {
-        setEmail(searchParams.get('email'))
-    }, [searchParams.get('email')])
+        setEmail(searchParams.get('email'));
+    }, [searchParams.get('email')]);
 
     return (
         <>
@@ -50,8 +50,8 @@ const PasswordReset = () => {
                         id="email"
                         type="email"
                         value={email}
-                        className="block mt-1 w-full"
-                        onChange={event => setEmail(event.target.value)}
+                        className="mt-1 block w-full"
+                        onChange={(event) => setEmail(event.target.value)}
                         required
                         autoFocus
                     />
@@ -66,15 +66,12 @@ const PasswordReset = () => {
                         id="password"
                         type="password"
                         value={password}
-                        className="block mt-1 w-full"
-                        onChange={event => setPassword(event.target.value)}
+                        className="mt-1 block w-full"
+                        onChange={(event) => setPassword(event.target.value)}
                         required
                     />
 
-                    <InputError
-                        messages={errors.password}
-                        className="mt-2"
-                    />
+                    <InputError messages={errors.password} className="mt-2" />
                 </div>
 
                 {/* Confirm Password */}
@@ -87,8 +84,8 @@ const PasswordReset = () => {
                         id="passwordConfirmation"
                         type="password"
                         value={passwordConfirmation}
-                        className="block mt-1 w-full"
-                        onChange={event =>
+                        className="mt-1 block w-full"
+                        onChange={(event) =>
                             setPasswordConfirmation(event.target.value)
                         }
                         required
@@ -100,12 +97,12 @@ const PasswordReset = () => {
                     />
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
+                <div className="mt-4 flex items-center justify-end">
                     <Button>Reset Password</Button>
                 </div>
             </form>
         </>
-    )
-}
+    );
+};
 
-export default PasswordReset
+export default PasswordReset;

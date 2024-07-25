@@ -1,10 +1,9 @@
-
 const RedButton = ({ type = 'submit', className, ...props }) => (
     <button
         type={type}
-        className={`${className} inline-flex items-center px-4 py-2 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 active:bg-red-900 focus:outline-none focus:border-red-900 focus:ring ring-red-300 disabled:opacity-25 transition ease-in-out duration-150`}
+        className={`${className} inline-flex items-center rounded-md border border-transparent bg-red-800 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white ring-red-300 transition duration-150 ease-in-out hover:bg-red-700 focus:border-red-900 focus:outline-none focus:ring active:bg-red-900 disabled:opacity-25`}
         {...props}
     />
-)
+);
 
-export default RedButton
+export default RedButton;

@@ -1,12 +1,11 @@
 'use client';
-import Header from '@/app/(app)/Header';
 import Button from '@/components/Button';
 import RedButton from '@/components/RedButton';
 import axios from '@/lib/axios';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import Header from '../Header';
 
-const Save = () => {
+const Page = () => {
     const [savings, setSavings] = useState([]);
     const [selectedSavings, setSelectedSavings] = useState(null);
     const [error, setError] = useState('');
@@ -21,7 +20,7 @@ const Save = () => {
             type,
         };
         try {
-            const response = await axios.post(`/api/savings/${saving}/transaction`, transactionData,);
+            const response = await axios.post( `/api/savings/${saving}/transaction`, transactionData,);
 
             setSuccess('Transaction completed successfully!');
             setError('');
@@ -48,12 +47,12 @@ const Save = () => {
 
     const deleteAccount = async (savings) => {
         try {
-            await axios.delete(`/api/savings/${savings}`)
-            setSuccess('Account deleted')
+            await axios.delete(`/api/savings/${savings}`);
+            setSuccess('Account deleted');
         } catch (error) {
-            setError('Failed to create account')
+            setError('Failed to create account');
         }
-    }
+    };
 
     useEffect(() => {
         const fetchSavings = async () => {
@@ -90,7 +89,9 @@ const Save = () => {
                             Create an savings account{' '}
                             <Button onClick={createAccount}>Create</Button>
                             {error && <p style={{ color: 'red' }}> {error}</p>}
-                            {success && (<p style={{ color: 'green' }}>{success}</p>)}
+                            {success && (
+                                <p style={{ color: 'green' }}>{success}</p>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -102,7 +103,12 @@ const Save = () => {
                             {error && <p>{error}</p>}
                             <ul>
                                 {savings.map((saving) => (
-                                    <li key={saving.id} onClick={() => handleAccountClick(saving.id)} >
+                                    <li
+                                        key={saving.id}
+                                        onClick={() =>
+                                            handleAccountClick(saving.id)
+                                        }
+                                    >
                                         Account number: {saving.account_number}{' '}
                                         Balance: {saving.balance}
                                         {selectedSavings &&
@@ -110,41 +116,85 @@ const Save = () => {
                                                 <div className="rounded-md border border-black p-2">
                                                     <p>Account details</p>
                                                     <p>
-                                                        Account Number:{' '} {saving.account_number}
+                                                        Account Number:{' '}
+                                                        {saving.account_number}
                                                     </p>
                                                     <p>
-                                                        Balance:{' '} {saving.balance}
+                                                        Balance:{' '}
+                                                        {saving.balance}
                                                     </p>
                                                     <p>
-                                                        {' '} Created:{' '} {saving.created_at}
+                                                        {' '}
+                                                        Created:{' '}
+                                                        {saving.created_at}
                                                     </p>
                                                     <input
                                                         type="text"
                                                         placeholder="Amount"
                                                         value={amount}
-                                                        onChange={(e) => setAmount(e.target.value,)} />
+                                                        onChange={(e) =>
+                                                            setAmount(
+                                                                e.target.value,
+                                                            )
+                                                        }
+                                                    />
 
-                                                    <select value={type} onChange={(e) => setType(e.target.value,)} >
+                                                    <select
+                                                        value={type}
+                                                        onChange={(e) =>
+                                                            setType(
+                                                                e.target.value,
+                                                            )
+                                                        }
+                                                    >
                                                         <option value="deposit">
-                                                            {' '} Deposit{' '}
+                                                            {' '}
+                                                            Deposit{' '}
                                                         </option>
                                                         <option value="withdraw">
-                                                            {' '} Withdrawal{' '}
+                                                            {' '}
+                                                            Withdrawal{' '}
                                                         </option>
                                                     </select>
 
-                                                    <Button onClick={() => handleTransaction(saving.id,)} >
+                                                    <Button
+                                                        onClick={() =>
+                                                            handleTransaction(
+                                                                saving.id,
+                                                            )
+                                                        }
+                                                    >
                                                         Submit
                                                     </Button>
-                                                    {error && (<p style={{ color: 'red', }} > {error}
-                                                    </p>
+                                                    {error && (
+                                                        <p
+                                                            style={{
+                                                                color: 'red',
+                                                            }}
+                                                        >
+                                                            {' '}
+                                                            {error}
+                                                        </p>
                                                     )}
-                                                    {success && (<p style={{ color: 'green', }} >
-                                                        {' '}
-                                                        {success}{' '}
-                                                    </p>
+                                                    {success && (
+                                                        <p
+                                                            style={{
+                                                                color: 'green',
+                                                            }}
+                                                        >
+                                                            {' '}
+                                                            {success}{' '}
+                                                        </p>
                                                     )}
-                                                    <RedButton onClick={() => deleteAccount(saving.id)}>Delete account</RedButton>
+                                                    <RedButton
+                                                        onClick={() =>
+                                                            deleteAccount(
+                                                                saving.id,
+                                                            )
+                                                        }
+                                                    >
+                                                        Delete account
+                                                    </RedButton>
                                                 </div>
                                             )}
                                     </li>
@@ -157,4 +207,4 @@ const Save = () => {
         </>
     );
 };
-export default Save;
+export default Page;

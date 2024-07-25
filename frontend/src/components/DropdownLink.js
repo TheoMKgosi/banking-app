@@ -1,32 +1,34 @@
-import Link from 'next/link'
-import { Menu } from '@headlessui/react'
+import Link from 'next/link';
+import { Menu } from '@headlessui/react';
 
 const DropdownLink = ({ children, ...props }) => (
     <Menu.Item>
         {({ active }) => (
             <Link
                 {...props}
-                className={`w-full text-left block px-4 py-2 text-sm leading-5 text-gray-700 ${
+                className={`block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 ${
                     active ? 'bg-gray-100' : ''
-                } focus:outline-none transition duration-150 ease-in-out`}>
+                } transition duration-150 ease-in-out focus:outline-none`}
+            >
                 {children}
             </Link>
         )}
     </Menu.Item>
-)
+);
 
 export const DropdownButton = ({ children, ...props }) => (
     <Menu.Item>
         {({ active }) => (
             <button
-                className={`w-full text-left block px-4 py-2 text-sm leading-5 text-gray-700 ${
+                className={`block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 ${
                     active ? 'bg-gray-100' : ''
-                } focus:outline-none transition duration-150 ease-in-out`}
-                {...props}>
+                } transition duration-150 ease-in-out focus:outline-none`}
+                {...props}
+            >
                 {children}
             </button>
         )}
     </Menu.Item>
-)
+);
 
-export default DropdownLink
+export default DropdownLink;

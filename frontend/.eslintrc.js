@@ -17,6 +17,7 @@ module.exports = {
         'plugin:react/recommended',
         'plugin:@next/next/recommended',
         'prettier',
+        'next'
     ],
     parserOptions: {
         ecmaFeatures: {
@@ -30,10 +31,10 @@ module.exports = {
     },
     rules: {
         'import/prefer-default-export': 0,
-        'no-console': 'warn',
+     //   'no-console': 'warn',
         'no-nested-ternary': 0,
         'no-underscore-dangle': 0,
-        'no-unused-expressions': ['error', { allowTernary: true }],
+    //    'no-unused-expressions': ['error', { allowTernary: true }],
         camelcase: 0,
         'react/self-closing-comp': 1,
         'react/jsx-filename-extension': [1, { extensions: ['.js', 'jsx'] }],
@@ -46,6 +47,5 @@ module.exports = {
         'react/require-default-props': 0,
         'react/react-in-jsx-scope': 0,
         'linebreak-style': ['error', 'unix'],
-        semi: ['error', 'never'],
     },
-}
+};

@@ -26,6 +26,8 @@ use function PHPUnit\Framework\returnValue;
  * @method static \Illuminate\Database\Eloquent\Builder|Saving whereUserId($value)
  * @property string $account_number
  * @method static \Illuminate\Database\Eloquent\Builder|Saving whereAccountNumber($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Transaction> $transaction
+ * @property-read int|null $transaction_count
  * @mixin \Eloquent
  */
 class Saving extends Model
@@ -43,6 +45,10 @@ class Saving extends Model
         'user_id',
         'account_number'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function transaction(){
         return $this->hasMany(Transaction::class);

@@ -6,7 +6,6 @@ use App\Models\Saving;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class SavingsController extends Controller
 {
@@ -39,7 +38,6 @@ class SavingsController extends Controller
     public function show($id)
     {
 
-        Log::info($id);
         $res = Saving::where('id', $id)->where('user_id', Auth::id())->first();
 
         if ($res) {
